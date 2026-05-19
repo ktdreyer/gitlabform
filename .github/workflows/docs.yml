@@ -30,4 +30,6 @@ jobs:
       - name: Check links
         run: |
           uv tool install linkchecker
-          linkchecker site/index.html --check-extern
+          python -m http.server 8000 -d site &
+          sleep 1
+          linkchecker http://localhost:8000 --check-extern
